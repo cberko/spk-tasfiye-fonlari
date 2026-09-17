@@ -44,6 +44,7 @@ def bolum():
     net_toplam = sum(float(r["net_tl"]) for r in varlik)
     en_buyuk = sorted(load_detay(), key=lambda r: -r["portfoy_buyuklugu_tl"])[:10]
     bilinmeyen = fonlar_arasi.bilinmeyen()
+    ilk_yayin, son_yayin = fonlar_arasi.yayin_araligi()
     parts = [
         grafik(1, "1_fon_tipine_gore_tasfiye.png", "Fon tipine göre tasfiye tutarı"),
         grup_tablosu("ozet_fon_tipi.csv", "Fon tipi"),
@@ -60,11 +61,13 @@ def bolum():
         "Toplamlardan düşülmemiştir; tutan ve tutulan fonun büyüklüğünde ayrı ayrı yer alır. Tutarlar, tutan fonun KAP'taki "
         f"en güncel portföy dağılım raporundandır. KAP'ta güncel raporu bulunmayan ({bilinmeyen['rapor_yok'][0]} fon) veya rapor "
         f"yayımlamaktan muaf olan ({bilinmeyen['muaf'][0]} fon) fonlar için bu bilgi bulunmamaktadır. "
+        f"Fon büyüklükleri TEFAS'ın {config.VERI_TARIHI} verisidir; KAP raporları ise {ilk_yayin}–{son_yayin} tarihleri arasında "
+        "yayımlandığı için tutarlar aynı güne ait değildir. "
         "50 mn TL altındaki kalemler için `fonlar_arasi_yatirim.csv` dosyasına bakın.\n\n"
-        + tablo(["Tutan fon", "Tutulan fon", "Tutar (mlr TL)", "KAP raporu"],
+        + tablo(["Tutan fon", "Tutulan fon", "Tutar (mlr TL)", "KAP raporu (yayın tarihi)", f"TEFAS {config.VERI_TARIHI} ile fark"],
                 [[r["tutan_fon"], r["tutulan_fon"], f"{float(r['tutar_tl']) / 1e9:,.2f}".replace(".", ","),
-                  f"{r['kap_rapor_donemi']} ({r['kap_yayin_tarihi']})"]
-                 for r in read_csv(fonlar_arasi.CIKTI) if float(r["tutar_tl"]) >= 5e7], "llrl"),
+                  f"{r['kap_rapor_donemi']} ({r['kap_yayin_tarihi']})", f"{r['tefas_verisiyle_gun_farki']} gün"]
+                 for r in read_csv(fonlar_arasi.CIKTI) if float(r["tutar_tl"]) >= 5e7], "llrlr"),
         "### En büyük 10 fon\n\n"
         + tablo(["Kod", "Fon", "Büyüklük (mlr TL)", "Yatırımcı"],
                 [[r["fon_kodu"], r["fon_unvani"], mlr(r["portfoy_buyuklugu_tl"]), binlik(r["yatirimci_sayisi"])]

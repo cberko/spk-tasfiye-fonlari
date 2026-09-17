@@ -97,6 +97,7 @@ def main():
     setup_fonts()
     detay = load_detay()
     ic_yatirim = fonlar_arasi.toplam()
+    ilk_yayin, son_yayin = fonlar_arasi.yayin_araligi()
 
     donut([(k, v, f"{n} fon") for k, (v, n) in grupla(detay, "fon_tipi")],
           f"Tasfiye edilecek fonlar: {mlr(sum(r['portfoy_buyuklugu_tl'] for r in detay))} milyar TL",
@@ -112,7 +113,8 @@ def main():
           "2_varlik_turune_gore_tasfiye.png",
           footnote=f"* Brüt tutardır: kaldıraçlı {len(kaldiracli)} fonun {mlr(-borc)} mlr TL repo ve para piyasası borcu "
                    f"düşülmemiştir. Borç düşüldüğünde net varlık {mlr(brut + borc)} mlr TL (toplam fon büyüklüğü).\n"
-                   f"  Yatırım fonu katılma paylarının {mlr(ic_yatirim)} mlr TL'si, son KAP raporlarına göre listedeki diğer fonların paylarıdır.",
+                   f"  Yatırım fonu katılma paylarının {mlr(ic_yatirim)} mlr TL'si, son KAP raporlarına göre listedeki diğer fonların paylarıdır "
+                   f"(raporların yayın tarihi {ilk_yayin[:5]}–{son_yayin}).",
           source=f"Kaynak: SPK Bülteni 2026/60, TEFAS {config.VERI_TARIHI}, KAP portföy dağılım raporları. "
                  "Hesaplama: fon büyüklüğü × TEFAS portföy dağılım oranı.")
 

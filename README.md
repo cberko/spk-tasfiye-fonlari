@@ -88,18 +88,18 @@ Fon büyüklüğü × TEFAS portföy dağılım oranı. Negatif tutarlar kaldır
 
 ### Fonların listedeki diğer fonlara yatırımı
 
-Toplamlardan düşülmemiştir; tutan ve tutulan fonun büyüklüğünde ayrı ayrı yer alır. Tutarlar, tutan fonun KAP'taki en güncel portföy dağılım raporundandır. KAP'ta güncel raporu bulunmayan (15 fon) veya rapor yayımlamaktan muaf olan (18 fon) fonlar için bu bilgi bulunmamaktadır. 50 mn TL altındaki kalemler için `fonlar_arasi_yatirim.csv` dosyasına bakın.
+Toplamlardan düşülmemiştir; tutan ve tutulan fonun büyüklüğünde ayrı ayrı yer alır. Tutarlar, tutan fonun KAP'taki en güncel portföy dağılım raporundandır. KAP'ta güncel raporu bulunmayan (15 fon) veya rapor yayımlamaktan muaf olan (18 fon) fonlar için bu bilgi bulunmamaktadır. Fon büyüklükleri TEFAS'ın 16.09.2026 verisidir; KAP raporları ise 03.09.2026–16.09.2026 tarihleri arasında yayımlandığı için tutarlar aynı güne ait değildir. 50 mn TL altındaki kalemler için `fonlar_arasi_yatirim.csv` dosyasına bakın.
 
-| Tutan fon | Tutulan fon | Tutar (mlr TL) | KAP raporu |
-|:---|:---|---:|:---|
-| TLY | HMV | 12,53 | 35. Hafta (09.09.2026) |
-| DFI | ABG | 10,18 | 36. Hafta (16.09.2026) |
-| DOH | T3B | 2,02 | 35. Hafta (09.09.2026) |
-| DFI | PSE | 0,50 | 36. Hafta (16.09.2026) |
-| DOH | TLY | 0,19 | 35. Hafta (09.09.2026) |
-| KHA | AC4 | 0,16 | 8. Ay (03.09.2026) |
-| DFI | BAC | 0,12 | 36. Hafta (16.09.2026) |
-| SNY | PSE | 0,07 | 36. Hafta (16.09.2026) |
+| Tutan fon | Tutulan fon | Tutar (mlr TL) | KAP raporu (yayın tarihi) | TEFAS 16.09.2026 ile fark |
+|:---|:---|---:|:---|---:|
+| TLY | HMV | 12,53 | 35. Hafta (09.09.2026) | 7 gün |
+| DFI | ABG | 10,18 | 36. Hafta (16.09.2026) | 0 gün |
+| DOH | T3B | 2,02 | 35. Hafta (09.09.2026) | 7 gün |
+| DFI | PSE | 0,50 | 36. Hafta (16.09.2026) | 0 gün |
+| DOH | TLY | 0,19 | 35. Hafta (09.09.2026) | 7 gün |
+| KHA | AC4 | 0,16 | 8. Ay (03.09.2026) | 13 gün |
+| DFI | BAC | 0,12 | 36. Hafta (16.09.2026) | 0 gün |
+| SNY | PSE | 0,07 | 36. Hafta (16.09.2026) | 0 gün |
 
 ### En büyük 10 fon
 
