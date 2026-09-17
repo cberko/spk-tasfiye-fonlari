@@ -8,7 +8,7 @@ from .io import load_tefas_genel, read_csv, write_csv
 SIRKET_GRUPLARI = {"A1 CAPİTAL": "A1 Capital + Pardus", "PARDUS": "A1 Capital + Pardus"}
 
 DETAY_ALANLARI = ["sira", "portfoy_sirketi", "sirket_grubu", "fon_unvani", "fon_kodu", "semsiye_fon_turu",
-                  "fon_tipi", "portfoy_buyuklugu_tl", "yatirimci_sayisi", "fiyat", "tedavuldeki_pay", "tefas_durumu"]
+                  "fon_tipi", "portfoy_buyuklugu_tl", "yatirimci_sayisi", "fiyat", "tedavuldeki_pay"]
 
 
 def fon_tipi(unvan, semsiye):
@@ -34,13 +34,9 @@ def build_rows():
     tefas = load_tefas_genel()
     rows = []
     for f in read_csv(config.FON_LISTESI):
-        row = dict.fromkeys(DETAY_ALANLARI, "")
-        row.update(f, sirket_grubu=sirket_grubu(f["portfoy_sirketi"]),
-                   tefas_durumu=f"{config.VERI_TARIHI} TEFAS listesinde yok")
-        t = tefas.get(f["sira"])
-        if t:
-            row.update(t, fon_tipi=fon_tipi(f["fon_unvani"], t["semsiye_fon_turu"]), tefas_durumu="bulundu")
-        rows.append(row)
+        t = tefas[f["sira"]]
+        rows.append({**f, **t, "sirket_grubu": sirket_grubu(f["portfoy_sirketi"]),
+                     "fon_tipi": fon_tipi(f["fon_unvani"], t["semsiye_fon_turu"])})
     return rows
 
 
@@ -59,18 +55,13 @@ def main():
     rows = build_rows()
     write_csv(config.FON_DETAY, DETAY_ALANLARI, [[r[k] for k in DETAY_ALANLARI] for r in rows])
 
-    found = [r for r in rows if r["tefas_durumu"] == "bulundu"]
-    total = sum(r["portfoy_buyuklugu_tl"] for r in found)
+    total = sum(r["portfoy_buyuklugu_tl"] for r in rows)
     for key in ("fon_tipi", "semsiye_fon_turu", "sirket_grubu"):
         write_csv(config.PROCESSED / f"ozet_{key}.csv",
                   [key, "fon_sayisi", "portfoy_buyuklugu_tl", "pay_yuzde", "yatirimci_sayisi"],
-                  summarize(found, key, total))
+                  summarize(rows, key, total))
 
-    print(f"SPK listesi: {len(rows)} fon, TEFAS'ta bulunan: {len(found)}")
-    print(f"Toplam tasfiye büyüklüğü: {total / 1e9:,.2f} mlr TL")
-    for r in rows:
-        if r["tefas_durumu"] != "bulundu":
-            print("  TEFAS'ta yok:", r["fon_unvani"])
+    print(f"{len(rows)} fon, toplam tasfiye büyüklüğü: {total / 1e9:,.2f} mlr TL")
 
 
 if __name__ == "__main__":

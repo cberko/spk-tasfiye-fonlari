@@ -28,7 +28,7 @@ def main():
     rows = []
     for r in detay:
         a, size = dagilim.get(r["fon_kodu"], {}), r["portfoy_buyuklugu_tl"]
-        kaldirac = "evet" if any(v < 0 for v in a.values()) else ("" if a else "veri yok")
+        kaldirac = "evet" if any(v < 0 for v in a.values()) else ""
         rows.append([r["fon_kodu"], r["fon_unvani"], r["sirket_grubu"], r["semsiye_fon_turu"], round(size, 2), kaldirac]
                     + [a.get(k, "") for k in keys]
                     + [round(a[k] / 100 * size, 2) if k in a else "" for k in keys])

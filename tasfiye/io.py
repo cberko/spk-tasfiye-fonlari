@@ -50,8 +50,8 @@ def load_tefas_dagilim():
 
 
 def load_detay():
-    """TEFAS'ta bulunan fonlar (büyüklük float olarak)."""
-    rows = [r for r in read_csv(config.FON_DETAY) if r["fon_kodu"]]
+    """Tüm fonlar (büyüklük float olarak)."""
+    rows = read_csv(config.FON_DETAY)
     for r in rows:
         r["portfoy_buyuklugu_tl"] = float(r["portfoy_buyuklugu_tl"])
     return rows

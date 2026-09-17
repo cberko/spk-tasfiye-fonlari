@@ -99,7 +99,7 @@ def main():
 
     donut([(k, v, f"{n} fon") for k, (v, n) in grupla(detay, "fon_tipi")],
           f"Tasfiye edilecek fonlar: {mlr(sum(r['portfoy_buyuklugu_tl'] for r in detay))} milyar TL",
-          f"SPK listesindeki 130 fonun büyüklüğü, fon tipine göre ({len(detay)} fon TEFAS verisiyle)",
+          f"SPK listesindeki {len(detay)} fonun büyüklüğü, fon tipine göre",
           "1_fon_tipine_gore_tasfiye.png")
 
     pos, neg, kaldiracli = varlik_tutarlari(detay, load_tefas_dagilim())

@@ -8,7 +8,7 @@ Fon büyüklükleri ve portföy dağılımları TEFAS'ın **16.09.2026** verisin
 
 | | |
 |---|---|
-| Tasfiye edilecek fon | 130 (128'i TEFAS verisiyle) |
+| Tasfiye edilecek fon | 130 |
 | Toplam fon büyüklüğü (net varlık) | **842,7 milyar TL** |
 | Brüt varlık | 883,0 milyar TL |
 | Kaldıraç borcu (32 fon) | 40,3 milyar TL |
@@ -24,8 +24,8 @@ Fon büyüklükleri ve portföy dağılımları TEFAS'ın **16.09.2026** verisin
 | Fon tipi | Fon | Büyüklük (mlr TL) | Pay | Yatırımcı* |
 |:---|---:|---:|---:|---:|
 | Diğer Serbest Fon | 3 | 292,6 | %34,7 | 150.318 |
-| Para Piyasası Fonu (PPF) | 8 | 261,8 | %31,1 | 244.502 |
-| Hisse Senedi Yoğun Serbest | 109 | 222,2 | %26,4 | 58.949 |
+| Para Piyasası Fonu (PPF) | 9 | 261,8 | %31,1 | 244.502 |
+| Hisse Senedi Yoğun Serbest | 110 | 222,2 | %26,4 | 58.949 |
 | Para Piyasası / Kısa Vadeli Serbest | 4 | 51,4 | %6,1 | 12.386 |
 | Katılım (Para Piyasası) Fonu | 3 | 10,7 | %1,3 | 21.335 |
 | Hisse Senedi Fonu | 1 | 4,1 | %0,5 | 31.609 |
@@ -34,8 +34,8 @@ TEFAS şemsiye fon türüne göre:
 
 | Şemsiye fon türü | Fon | Büyüklük (mlr TL) | Pay | Yatırımcı* |
 |:---|---:|---:|---:|---:|
-| Serbest Şemsiye Fonu | 116 | 566,2 | %67,2 | 221.653 |
-| Para Piyasası Şemsiye Fonu | 8 | 261,8 | %31,1 | 244.502 |
+| Serbest Şemsiye Fonu | 117 | 566,2 | %67,2 | 221.653 |
+| Para Piyasası Şemsiye Fonu | 9 | 261,8 | %31,1 | 244.502 |
 | Katılım Şemsiye Fonu | 3 | 10,7 | %1,3 | 21.335 |
 | Hisse Senedi Şemsiye Fonu | 1 | 4,1 | %0,5 | 31.609 |
 
@@ -76,7 +76,7 @@ Fon büyüklüğü × TEFAS portföy dağılım oranı. Negatif tutarlar kaldır
 |:---|---:|---:|---:|---:|
 | Tera | 5 | 538,3 | %63,9 | 323.299 |
 | Atlas | 16 | 78,0 | %9,3 | 59.915 |
-| Hedef | 29 | 77,7 | %9,2 | 27.593 |
+| Hedef | 31 | 77,7 | %9,2 | 27.593 |
 | A1 Capital + Pardus | 51 | 73,2 | %8,7 | 42.299 |
 | Pusula | 12 | 64,1 | %7,6 | 60.357 |
 | Bulls | 15 | 11,4 | %1,3 | 5.636 |
@@ -139,8 +139,6 @@ PDF'ten fon listesini çıkarmak için `pdftotext` gerekir (`brew install popple
   `api/funds/fonGnlBlgSiraliGetir` (genel bilgiler) ve `api/funds/dagilimSiraliGetirT` (portföy dağılımı) uç noktalarından çekildi.
   Kod bu dosyaları okur, TEFAS'a bağlanmaz.
 - **Fon eşleştirme:** SPK listesindeki unvanlar TEFAS unvanlarıyla eşleştirildi. `tefas_genel` dosyası SPK listesindeki sıra numarasıyla bağlanır.
-- **TEFAS'ta olmayan fonlar:** Hedef Portföy İnci Hisse Senedi Serbest Özel Fon (HIN) ve Hedef Portföy İkinci Para Piyasası (TL) Fon (HPP)
-  16.09 listesinde yok; 15.09'da büyüklükleri 0 TL.
 - **Şemsiye fon türü**, fonun bağlı olduğu şemsiye fonun TEFAS kategorisidir. **Fon tipi** ise grafikler için şemsiye türü ve unvandan türetilen sınıflamadır.
 - **Kaldıraç:** Portföy dağılımında repo ve para piyasası borçları negatif yüzde olarak gelir.
   Varlık grafiği brüt tutarı gösterir; borç düşülünce toplam, fon büyüklüğüne (842,7 mlr TL) eşitlenir.
