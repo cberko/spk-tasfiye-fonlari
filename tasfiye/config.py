@@ -9,12 +9,16 @@ CHARTS = ROOT / "output" / "grafikler"
 SPK_PDF = RAW / "spk_bulten_2026-60.pdf"
 TEFAS_GENEL = RAW / "tefas_genel_20260916.txt"
 TEFAS_DAGILIM = RAW / "tefas_dagilim_20260916.txt"
+KAP_FON_PAYLARI = RAW / "kap_fon_paylari.csv"
 
 FON_LISTESI = PROCESSED / "fon_listesi.csv"
 FON_DETAY = PROCESSED / "tasfiye_fonlar_detay.csv"
 FON_DAGILIM = PROCESSED / "tasfiye_fonlar_dagilim.csv"
 
 VERI_TARIHI = "16.09.2026"
+
+# portföy dağılımında fon payı kalemleri: yatırım fonu, borsa yatırım fonu, girişim sermayesi fonu
+FON_PAYI_ALANLARI = ("yyf", "byf", "gsykb")
 
 # tefas_genel dosyasındaki tur_idx -> TEFAS şemsiye fon türü
 SEMSIYE_TURLERI = [

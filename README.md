@@ -13,6 +13,10 @@ Fon büyüklükleri ve portföy dağılımları TEFAS'ın **16.09.2026** verisin
 | Brüt varlık | 883,0 milyar TL |
 | Kaldıraç borcu (32 fon) | 40,3 milyar TL |
 | Hisse senedi | 480,5 milyar TL |
+| Fonların listedeki diğer fonlara yatırımı* | 25,9 milyar TL |
+
+\* Portföy raporu yayımlayan fonların son KAP raporlarına göre. Bu tutar hem tutan hem tutulan fonun büyüklüğünde yer alır,
+toplamdan düşülmemiştir. 18 fon rapor yayımlamaktan muaf, 15 fon KAP'a rapor yüklememiş; bunların fon payı içeriği bilinmiyor.
 
 ## Çıktılar
 
@@ -82,6 +86,21 @@ Fon büyüklüğü × TEFAS portföy dağılım oranı. Negatif tutarlar kaldır
 | Bulls | 15 | 11,4 | %1,3 | 5.636 |
 | A1 Capital | 9 | 2,4 | %0,3 | 1.540 |
 
+### Fonların listedeki diğer fonlara yatırımı
+
+Toplamlardan düşülmemiştir; tutan ve tutulan fonun büyüklüğünde ayrı ayrı yer alır. Tutarlar, tutan fonun KAP'taki en güncel portföy dağılım raporundandır. KAP'ta güncel raporu bulunmayan (15 fon) veya rapor yayımlamaktan muaf olan (18 fon) fonlar için bu bilgi bulunmamaktadır. 50 mn TL altındaki kalemler için `fonlar_arasi_yatirim.csv` dosyasına bakın.
+
+| Tutan fon | Tutulan fon | Tutar (mlr TL) | KAP raporu |
+|:---|:---|---:|:---|
+| TLY | HMV | 12,53 | 35. Hafta (09.09.2026) |
+| DFI | ABG | 10,18 | 36. Hafta (16.09.2026) |
+| DOH | T3B | 2,02 | 35. Hafta (09.09.2026) |
+| DFI | PSE | 0,50 | 36. Hafta (16.09.2026) |
+| DOH | TLY | 0,19 | 35. Hafta (09.09.2026) |
+| KHA | AC4 | 0,16 | 8. Ay (03.09.2026) |
+| DFI | BAC | 0,12 | 36. Hafta (16.09.2026) |
+| SNY | PSE | 0,07 | 36. Hafta (16.09.2026) |
+
 ### En büyük 10 fon
 
 | Kod | Fon | Büyüklük (mlr TL) | Yatırımcı |
@@ -110,6 +129,8 @@ Fon büyüklüğü × TEFAS portföy dağılım oranı. Negatif tutarlar kaldır
 | [`ozet_semsiye_fon_turu.csv`](data/processed/ozet_semsiye_fon_turu.csv) | Şemsiye fon türüne göre özet |
 | [`ozet_sirket.csv`](data/processed/ozet_sirket.csv) | Portföy şirketine göre özet |
 | [`ozet_varlik_dagilimi.csv`](data/processed/ozet_varlik_dagilimi.csv) | Varlık türüne göre brüt, borç ve net TL |
+| [`fonlar_arasi_yatirim.csv`](data/processed/fonlar_arasi_yatirim.csv) | Fonların listedeki diğer fonlara yatırımı (son KAP raporları) |
+| [`kap_fon_paylari.csv`](data/raw/kap_fon_paylari.csv) | KAP raporlarından çıkarılan ham fon payı oranları ve rapor durumu |
 <!-- CIKTILAR:BITIS -->
 
 ## Kurulum ve çalıştırma
@@ -132,7 +153,11 @@ PDF'ten fon listesini çıkarmak için `pdftotext` gerekir (`brew install popple
 | 2 | `tasfiye.dataset` | fon listesi + `tefas_genel_20260916.txt` | `tasfiye_fonlar_detay.csv`, `ozet_fon_tipi.csv`, `ozet_semsiye_fon_turu.csv`, `ozet_sirket.csv` |
 | 3 | `tasfiye.allocation` | detay + `tefas_dagilim_20260916.txt` | `tasfiye_fonlar_dagilim.csv`, `ozet_varlik_dagilimi.csv` |
 | 4 | `tasfiye.plots` | işlenmiş veriler | `output/grafikler/*.png` |
-| 5 | `tasfiye.report` | özet CSV'ler | `README.md` çıktılar bölümü |
+| 5 | `tasfiye.fonlar_arasi` | `kap_fon_paylari.csv` | `fonlar_arasi_yatirim.csv` |
+| 6 | `tasfiye.report` | özet CSV'ler | `README.md` çıktılar bölümü |
+
+`tasfiye.kap` ana akışta çalışmaz: KAP'tan portföy dağılım raporlarını indirip `data/raw/kap_fon_paylari.csv` dosyasını üretir
+(`python -m tasfiye.kap`, ağ erişimi ve `pdftotext` gerekir).
 
 ## Veri kaynakları ve notlar
 
@@ -143,4 +168,8 @@ PDF'ten fon listesini çıkarmak için `pdftotext` gerekir (`brew install popple
 - **Şemsiye fon türü**, fonun bağlı olduğu şemsiye fonun TEFAS kategorisidir. **Fon tipi** ise grafikler için şemsiye türü ve unvandan türetilen sınıflamadır.
 - **Kaldıraç:** Portföy dağılımında repo ve para piyasası borçları negatif yüzde olarak gelir.
   Varlık grafiği brüt tutarı gösterir; borç düşülünce toplam, fon büyüklüğüne (842,7 mlr TL) eşitlenir.
+- **Fonların birbirine yatırımı:** Bazı fonlar listedeki başka fonların payını tutuyor (ör. TLY → HMV, DFI → ABG, DOH → T3B).
+  Hangi fonun payının tutulduğu TEFAS'ta yok; fon payı tutan 51 fonun KAP'taki en güncel portföy dağılım raporundan alındı.
+  Nitelikli yatırımcıya satılan fonlar rapor yayımlamaktan muaf (II-14.2 Tebliğ md. 19/2). Rapor tarihleri 16.09'dan farklı
+  olabildiği ve bazı fonların içeriği bilinmediği için bu tutar toplamlardan düşülmedi, bilgi olarak verildi.
 - `gsykb` alanının TEFAS arayüzünde etiketi yok; "Girişim Sermayesi Yatırım Fonu Katılma Payları" olarak yorumlandı (0,5 mlr TL).

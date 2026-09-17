@@ -1,5 +1,5 @@
 """README'deki "Çıktılar" bölümünü işlenmiş CSV'lerden yeniden üretir."""
-from . import config
+from . import config, fonlar_arasi
 from .io import load_detay, read_csv
 
 README = config.ROOT / "README.md"
@@ -43,6 +43,7 @@ def bolum():
     varlik = read_csv(config.PROCESSED / "ozet_varlik_dagilimi.csv")
     net_toplam = sum(float(r["net_tl"]) for r in varlik)
     en_buyuk = sorted(load_detay(), key=lambda r: -r["portfoy_buyuklugu_tl"])[:10]
+    bilinmeyen = fonlar_arasi.bilinmeyen()
     parts = [
         grafik(1, "1_fon_tipine_gore_tasfiye.png", "Fon tipine göre tasfiye tutarı"),
         grup_tablosu("ozet_fon_tipi.csv", "Fon tipi"),
@@ -55,6 +56,15 @@ def bolum():
                   mlr(r["net_tl"]), yuzde(r["net_tl"], net_toplam)] for r in varlik], "lrrrr"),
         grafik(3, "3_portfoy_sirketine_gore_tasfiye.png", "Portföy şirketine göre tasfiye tutarı"),
         grup_tablosu("ozet_sirket.csv", "Portföy şirketi"),
+        "### Fonların listedeki diğer fonlara yatırımı\n\n"
+        "Toplamlardan düşülmemiştir; tutan ve tutulan fonun büyüklüğünde ayrı ayrı yer alır. Tutarlar, tutan fonun KAP'taki "
+        f"en güncel portföy dağılım raporundandır. KAP'ta güncel raporu bulunmayan ({bilinmeyen['rapor_yok'][0]} fon) veya rapor "
+        f"yayımlamaktan muaf olan ({bilinmeyen['muaf'][0]} fon) fonlar için bu bilgi bulunmamaktadır. "
+        "50 mn TL altındaki kalemler için `fonlar_arasi_yatirim.csv` dosyasına bakın.\n\n"
+        + tablo(["Tutan fon", "Tutulan fon", "Tutar (mlr TL)", "KAP raporu"],
+                [[r["tutan_fon"], r["tutulan_fon"], f"{float(r['tutar_tl']) / 1e9:,.2f}".replace(".", ","),
+                  f"{r['kap_rapor_donemi']} ({r['kap_yayin_tarihi']})"]
+                 for r in read_csv(fonlar_arasi.CIKTI) if float(r["tutar_tl"]) >= 5e7], "llrl"),
         "### En büyük 10 fon\n\n"
         + tablo(["Kod", "Fon", "Büyüklük (mlr TL)", "Yatırımcı"],
                 [[r["fon_kodu"], r["fon_unvani"], mlr(r["portfoy_buyuklugu_tl"]), binlik(r["yatirimci_sayisi"])]
@@ -71,6 +81,8 @@ def bolum():
             ["[`ozet_semsiye_fon_turu.csv`](data/processed/ozet_semsiye_fon_turu.csv)", "Şemsiye fon türüne göre özet"],
             ["[`ozet_sirket.csv`](data/processed/ozet_sirket.csv)", "Portföy şirketine göre özet"],
             ["[`ozet_varlik_dagilimi.csv`](data/processed/ozet_varlik_dagilimi.csv)", "Varlık türüne göre brüt, borç ve net TL"],
+            ["[`fonlar_arasi_yatirim.csv`](data/processed/fonlar_arasi_yatirim.csv)", "Fonların listedeki diğer fonlara yatırımı (son KAP raporları)"],
+            ["[`kap_fon_paylari.csv`](data/raw/kap_fon_paylari.csv)", "KAP raporlarından çıkarılan ham fon payı oranları ve rapor durumu"],
         ], "ll"),
     ]
     return "\n\n".join(parts)

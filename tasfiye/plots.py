@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 from matplotlib import font_manager
 from matplotlib.patches import FancyBboxPatch
 
-from . import config
+from . import config, fonlar_arasi
 from .allocation import varlik_tutarlari
 from .io import load_detay, load_tefas_dagilim
 
@@ -96,6 +96,7 @@ def grupla(detay, key):
 def main():
     setup_fonts()
     detay = load_detay()
+    ic_yatirim = fonlar_arasi.toplam()
 
     donut([(k, v, f"{n} fon") for k, (v, n) in grupla(detay, "fon_tipi")],
           f"Tasfiye edilecek fonlar: {mlr(sum(r['portfoy_buyuklugu_tl'] for r in detay))} milyar TL",
@@ -110,8 +111,9 @@ def main():
           f"Fon büyüklüğü × TEFAS portföy dağılım oranı, brüt {mlr(brut)} mlr TL varlık*",
           "2_varlik_turune_gore_tasfiye.png",
           footnote=f"* Brüt tutardır: kaldıraçlı {len(kaldiracli)} fonun {mlr(-borc)} mlr TL repo ve para piyasası borcu "
-                   f"düşülmemiştir. Borç düşüldüğünde net varlık {mlr(brut + borc)} mlr TL (toplam fon büyüklüğü).",
-          source=f"Kaynak: SPK Bülteni 2026/60, TEFAS {config.VERI_TARIHI}. "
+                   f"düşülmemiştir. Borç düşüldüğünde net varlık {mlr(brut + borc)} mlr TL (toplam fon büyüklüğü).\n"
+                   f"  Yatırım fonu katılma paylarının {mlr(ic_yatirim)} mlr TL'si, son KAP raporlarına göre listedeki diğer fonların paylarıdır.",
+          source=f"Kaynak: SPK Bülteni 2026/60, TEFAS {config.VERI_TARIHI}, KAP portföy dağılım raporları. "
                  "Hesaplama: fon büyüklüğü × TEFAS portföy dağılım oranı.")
 
     donut([(f"{k} Portföy", v, f"{n} fon") for k, (v, n) in grupla(detay, "sirket")],
