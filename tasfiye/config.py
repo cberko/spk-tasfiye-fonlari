@@ -39,6 +39,5 @@ VARLIK_ETIKETLERI = {
     "ybyf": "Yabancı Borsa Yatırım Fonları", "yhs": "Yabancı Hisse Senedi",
     "byf": "Borsa Yatırım Fonları Katılma Payları", "yyf": "Yatırım Fonları Katılma Payları",
     "vint": "Vadeli İşlemler Nakit Teminatları", "d": "Diğer",
-    # TEFAS arayüzünde etiketi yok; ada göre tahmin
     "gsykb": "Girişim Sermayesi Yatırım Fonu Katılma Payları",
 }

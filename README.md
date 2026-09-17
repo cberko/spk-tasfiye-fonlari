@@ -183,4 +183,3 @@ PDF'ten fon listesini çıkarmak için `pdftotext` gerekir (`brew install popple
   oran × rapor net varlığı hesabı, yalnızca fonlar arası yatırım için yaklaşık gösterge olarak kullanılır.
   KAP yayın tarihi portföyün değerleme tarihi değildir; 16.09.2026 tarihinde yayımlanmış bir rapor da o günkü pozisyonları
   göstermeyebilir. Bu tutarlar 16.09.2026 için kesin veya bağlayıcı değildir ve toplamlardan düşülmez.
-- `gsykb` alanının TEFAS arayüzünde etiketi yok; "Girişim Sermayesi Yatırım Fonu Katılma Payları" olarak yorumlandı (0,5 mlr TL).
