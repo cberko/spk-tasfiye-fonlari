@@ -3,27 +3,31 @@
 SPK'nın 17.09.2026 tarihli 2026/60 sayılı bülteninde tasfiyesine karar verilen yatırım fonlarının analizi.
 Karar Tera, Pusula, Hedef, Atlas, A1 Capital, Pardus ve Bulls portföy şirketlerinin 130 fonunu kapsıyor.
 Fon büyüklükleri ve portföy dağılımları TEFAS'ın **16.09.2026** verisinden alındı.
+Çalışma, bu tarihteki net fon büyüklüklerini ve dağılım oranlarından hesaplanan yaklaşık varlık tutarlarını gösterir.
+Gerçekleşecek satış tutarı, tasfiye sonunda yatırımcıya ödenecek tutar veya piyasadaki satış baskısı tahmini değildir.
 
 ## Sonuçlar
 
 | | |
 |---|---|
 | Tasfiye edilecek fon | 130 |
-| Toplam fon büyüklüğü (net varlık) | **842,7 milyar TL** |
-| Brüt varlık | 883,0 milyar TL |
-| Kaldıraç borcu (32 fon) | 40,3 milyar TL |
-| Hisse senedi | 480,5 milyar TL |
-| Fonların listedeki diğer fonlara yatırımı* | 25,9 milyar TL |
+| Toplam net fon varlığı (16.09.2026) | **842,7 milyar TL** |
+| Dağılımdaki pozitif varlık kalemleri toplamı (yaklaşık) | 883,0 milyar TL |
+| Dağılımdaki repo ve para piyasası borcu (32 fon, yaklaşık) | 40,3 milyar TL |
+| Hisse senedi (dağılımdan hesaplanan, yaklaşık) | 480,5 milyar TL |
+| Fonların listedeki diğer fonlara yatırımı (KAP, yaklaşık)* | 25,9 milyar TL |
 
-\* Portföy raporu yayımlayan fonların son KAP raporlarına göre. Bu tutar hem tutan hem tutulan fonun büyüklüğünde yer alır,
-toplamdan düşülmemiştir. 18 fon rapor yayımlamaktan muaf, 15 fon KAP'a rapor yüklememiş; bunların fon payı içeriği bilinmiyor.
+\* Eski dönemlere ait KAP portföy raporlarındaki oran ve net varlık değerlerinden hesaplanan yaklaşık göstergedir;
+16.09.2026 itibarıyla kesin veya bağlayıcı bir fonlar arası yatırım tutarı değildir. Yayın tarihi, portföyün değerleme tarihiyle
+aynı olmayabilir. Bu nedenle tutar toplamdan düşülmemiştir. 18 fonda muafiyet bildirimi vardır, 15 fonda KAP raporu
+bulunamamıştır; bunların fon payı içeriği bilinmiyor.
 
 ## Çıktılar
 
 <!-- CIKTILAR:BASLA -->
-### 1. Fon tipine göre tasfiye tutarı
+### 1. Fon tipine göre net fon büyüklüğü
 
-![Fon tipine göre tasfiye tutarı](output/grafikler/1_fon_tipine_gore_tasfiye.png)
+![Fon tipine göre net fon büyüklüğü](output/grafikler/1_fon_tipine_gore_tasfiye.png)
 
 | Fon tipi | Fon | Büyüklük (mlr TL) | Pay | Yatırımcı* |
 |:---|---:|---:|---:|---:|
@@ -43,13 +47,13 @@ TEFAS şemsiye fon türüne göre:
 | Katılım Şemsiye Fonu | 3 | 10,7 | %1,3 | 21.335 |
 | Hisse Senedi Şemsiye Fonu | 1 | 4,1 | %0,5 | 31.609 |
 
-### 2. Varlık türüne göre tasfiye tutarı
+### 2. Varlık türüne göre yaklaşık tutarlar
 
-![Varlık türüne göre tasfiye tutarı](output/grafikler/2_varlik_turune_gore_tasfiye.png)
+![Varlık türüne göre yaklaşık tutarlar](output/grafikler/2_varlik_turune_gore_tasfiye.png)
 
-Fon büyüklüğü × TEFAS portföy dağılım oranı. Negatif tutarlar kaldıraçlı fonların repo ve para piyasası borçlarıdır; net toplam fon büyüklüğüne eşittir.
+Tutarlar, TEFAS'ın 16.09.2026 tarihli net fon büyüklüğü × aynı tarihli portföy dağılım oranıyla hesaplanan yaklaşık TL karşılıklarıdır. Pozitif sütunu varlık sınıflarındaki pozitif kalemleri, negatif sütunu dağılımdaki repo ve para piyasası borçlarını gösterir. Net toplam fon büyüklüğüne eşittir. Bu hesap tam bir brüt bilanço, toplam kaldıraç riski veya gerçekleşecek satış tutarı değildir. Grafikteki paylar pozitif toplam üzerinden, tablodaki net paylar net toplam üzerinden hesaplanır.
 
-| Varlık | Brüt (mlr TL) | Borç (mlr TL) | Net (mlr TL) | Net pay |
+| Varlık | Pozitif (mlr TL) | Negatif (mlr TL) | Net (mlr TL) | Net pay |
 |:---|---:|---:|---:|---:|
 | Hisse Senedi | 480,5 |  | 480,5 | %57,0 |
 | Ters-Repo | 172,7 |  | 172,7 | %20,5 |
@@ -72,9 +76,9 @@ Fon büyüklüğü × TEFAS portföy dağılım oranı. Negatif tutarlar kaldır
 | Hazine Bonosu | 0,0 |  | 0,0 | %0,0 |
 | Repo | 0,0 | -28,0 | -28,0 | −%3,3 |
 
-### 3. Portföy şirketine göre tasfiye tutarı
+### 3. Portföy şirketine göre net fon büyüklüğü
 
-![Portföy şirketine göre tasfiye tutarı](output/grafikler/3_portfoy_sirketine_gore_tasfiye.png)
+![Portföy şirketine göre net fon büyüklüğü](output/grafikler/3_portfoy_sirketine_gore_tasfiye.png)
 
 | Portföy şirketi | Fon | Büyüklük (mlr TL) | Pay | Yatırımcı* |
 |:---|---:|---:|---:|---:|
@@ -86,11 +90,13 @@ Fon büyüklüğü × TEFAS portföy dağılım oranı. Negatif tutarlar kaldır
 | Bulls | 15 | 11,4 | %1,3 | 5.636 |
 | A1 Capital | 9 | 2,4 | %0,3 | 1.540 |
 
-### Fonların listedeki diğer fonlara yatırımı
+### Fonların listedeki diğer fonlara yatırımı (KAP, yaklaşık)
 
-Toplamlardan düşülmemiştir; tutan ve tutulan fonun büyüklüğünde ayrı ayrı yer alır. Tutarlar, tutan fonun KAP'taki en güncel portföy dağılım raporundandır. KAP'ta güncel raporu bulunmayan (15 fon) veya rapor yayımlamaktan muaf olan (18 fon) fonlar için bu bilgi bulunmamaktadır. Fon büyüklükleri TEFAS'ın 16.09.2026 verisidir; KAP raporları ise 03.09.2026–16.09.2026 tarihleri arasında yayımlandığı için tutarlar aynı güne ait değildir. 50 mn TL altındaki kalemler için `fonlar_arasi_yatirim.csv` dosyasına bakın.
+Tutarlar, tutan fonun eldeki en güncel KAP raporundaki oran × rapor net varlığı hesabıyla üretilmiştir. Ana hesaplamanın kaynağı TEFAS'ın 16.09.2026 verisidir; KAP raporları ise eski dönemlere aittir ve 03.09.2026–16.09.2026 tarihleri arasında yayımlanmıştır. Bu nedenle aşağıdaki tutarlar **16.09.2026 için kesin veya bağlayıcı veri değil, fonlar arası yatırımı gösteren yaklaşık bir göstergedir.** Tutan ve tutulan fonda mükerrer sayılabilecek bu yatırımlar toplamlardan düşülmemiştir. KAP raporu bulunamayan (15 fon) veya muafiyet bildirimi olan (18 fon) fonlar için bu bilgi bulunmamaktadır.
 
-| Tutan fon | Tutulan fon | Tutar (mlr TL) | KAP raporu (yayın tarihi) | TEFAS 16.09.2026 ile fark |
+Tablodaki gün farkı yalnızca TEFAS veri tarihi ile KAP yayın tarihi arasındadır. **Yayın tarihi portföyün değerleme tarihi değildir; 0 gün fark, pozisyonların aynı güne ait olduğunu göstermez.** 50 mn TL altındaki kalemler için `fonlar_arasi_yatirim.csv` dosyasına bakın.
+
+| Tutan fon | Tutulan fon | Yaklaşık tutar (mlr TL) | KAP raporu (yayın tarihi) | TEFAS tarihi − KAP yayın tarihi |
 |:---|:---|---:|:---|---:|
 | TLY | HMV | 12,53 | 35. Hafta (09.09.2026) | 7 gün |
 | DFI | ABG | 10,18 | 36. Hafta (16.09.2026) | 0 gün |
@@ -129,7 +135,7 @@ Toplamlardan düşülmemiştir; tutan ve tutulan fonun büyüklüğünde ayrı a
 | [`ozet_semsiye_fon_turu.csv`](data/processed/ozet_semsiye_fon_turu.csv) | Şemsiye fon türüne göre özet |
 | [`ozet_sirket.csv`](data/processed/ozet_sirket.csv) | Portföy şirketine göre özet |
 | [`ozet_varlik_dagilimi.csv`](data/processed/ozet_varlik_dagilimi.csv) | Varlık türüne göre brüt, borç ve net TL |
-| [`fonlar_arasi_yatirim.csv`](data/processed/fonlar_arasi_yatirim.csv) | Fonların listedeki diğer fonlara yatırımı (son KAP raporları) |
+| [`fonlar_arasi_yatirim.csv`](data/processed/fonlar_arasi_yatirim.csv) | Fonların listedeki diğer fonlara yatırımı (eski dönem KAP raporlarından yaklaşık gösterge) |
 | [`kap_fon_paylari.csv`](data/raw/kap_fon_paylari.csv) | KAP raporlarından çıkarılan ham fon payı oranları ve rapor durumu |
 <!-- CIKTILAR:BITIS -->
 
@@ -166,10 +172,15 @@ PDF'ten fon listesini çıkarmak için `pdftotext` gerekir (`brew install popple
   Kod bu dosyaları okur, TEFAS'a bağlanmaz.
 - **Fon eşleştirme:** SPK listesindeki unvanlar TEFAS unvanlarıyla eşleştirildi. `tefas_genel` dosyası SPK listesindeki sıra numarasıyla bağlanır.
 - **Şemsiye fon türü**, fonun bağlı olduğu şemsiye fonun TEFAS kategorisidir. **Fon tipi** ise grafikler için şemsiye türü ve unvandan türetilen sınıflamadır.
-- **Kaldıraç:** Portföy dağılımında repo ve para piyasası borçları negatif yüzde olarak gelir.
-  Varlık grafiği brüt tutarı gösterir; borç düşülünce toplam, fon büyüklüğüne (842,7 mlr TL) eşitlenir.
+- **Hesaplama:** Varlık tutarları, TEFAS'ın 16.09.2026 tarihli net fon büyüklüğü ile aynı tarihli dağılım oranının
+  çarpılmasıyla hesaplanan yaklaşık TL karşılıklarıdır. Ana hesaplamada eski tarihli KAP dağılımları kullanılmaz.
+- **Pozitif ve negatif kalemler:** Portföy dağılımındaki repo ve para piyasası borçları negatif yüzde olarak gelir.
+  Varlık grafiği pozitif kalemlerin toplamını gösterir; negatif kalemler eklendiğinde net toplam 842,7 mlr TL olur.
+  Buradaki pozitif toplam tam bir brüt bilanço, negatif toplam ise tüm borç ve türev risklerinin ölçüsü değildir.
 - **Fonların birbirine yatırımı:** Bazı fonlar listedeki başka fonların payını tutuyor (ör. TLY → HMV, DFI → ABG, DOH → T3B).
   Hangi fonun payının tutulduğu TEFAS'ta yok; fon payı tutan 51 fonun KAP'taki en güncel portföy dağılım raporundan alındı.
-  Nitelikli yatırımcıya satılan fonlar rapor yayımlamaktan muaf (II-14.2 Tebliğ md. 19/2). Rapor tarihleri 16.09'dan farklı
-  olabildiği ve bazı fonların içeriği bilinmediği için bu tutar toplamlardan düşülmedi, bilgi olarak verildi.
+  Muafiyet bildirimleri ve bulunamayan raporlar nedeniyle bazı fonların içeriği bilinmiyor. Eski dönemlere ait raporlardaki
+  oran × rapor net varlığı hesabı, yalnızca fonlar arası yatırım için yaklaşık gösterge olarak kullanılır.
+  KAP yayın tarihi portföyün değerleme tarihi değildir; 16.09.2026 tarihinde yayımlanmış bir rapor da o günkü pozisyonları
+  göstermeyebilir. Bu tutarlar 16.09.2026 için kesin veya bağlayıcı değildir ve toplamlardan düşülmez.
 - `gsykb` alanının TEFAS arayüzünde etiketi yok; "Girişim Sermayesi Yatırım Fonu Katılma Payları" olarak yorumlandı (0,5 mlr TL).

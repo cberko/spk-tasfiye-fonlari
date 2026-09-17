@@ -46,25 +46,32 @@ def bolum():
     bilinmeyen = fonlar_arasi.bilinmeyen()
     ilk_yayin, son_yayin = fonlar_arasi.yayin_araligi()
     parts = [
-        grafik(1, "1_fon_tipine_gore_tasfiye.png", "Fon tipine göre tasfiye tutarı"),
+        grafik(1, "1_fon_tipine_gore_tasfiye.png", "Fon tipine göre net fon büyüklüğü"),
         grup_tablosu("ozet_fon_tipi.csv", "Fon tipi"),
         "TEFAS şemsiye fon türüne göre:\n\n" + grup_tablosu("ozet_semsiye_fon_turu.csv", "Şemsiye fon türü"),
-        grafik(2, "2_varlik_turune_gore_tasfiye.png", "Varlık türüne göre tasfiye tutarı"),
-        "Fon büyüklüğü × TEFAS portföy dağılım oranı. Negatif tutarlar kaldıraçlı fonların repo ve para piyasası borçlarıdır; "
-        "net toplam fon büyüklüğüne eşittir.\n\n"
-        + tablo(["Varlık", "Brüt (mlr TL)", "Borç (mlr TL)", "Net (mlr TL)", "Net pay"],
+        grafik(2, "2_varlik_turune_gore_tasfiye.png", "Varlık türüne göre yaklaşık tutarlar"),
+        f"Tutarlar, TEFAS'ın {config.VERI_TARIHI} tarihli net fon büyüklüğü × aynı tarihli portföy dağılım oranıyla "
+        "hesaplanan yaklaşık TL karşılıklarıdır. Pozitif sütunu varlık sınıflarındaki pozitif kalemleri, negatif sütunu "
+        "dağılımdaki repo ve para piyasası borçlarını gösterir. Net toplam fon büyüklüğüne eşittir. "
+        "Bu hesap tam bir brüt bilanço, toplam kaldıraç riski veya gerçekleşecek satış tutarı değildir. "
+        "Grafikteki paylar pozitif toplam üzerinden, tablodaki net paylar net toplam üzerinden hesaplanır.\n\n"
+        + tablo(["Varlık", "Pozitif (mlr TL)", "Negatif (mlr TL)", "Net (mlr TL)", "Net pay"],
                 [[r["varlik"], mlr(r["brut_pozitif_tl"]), mlr(r["negatif_tl"]) if float(r["negatif_tl"]) else "",
                   mlr(r["net_tl"]), yuzde(r["net_tl"], net_toplam)] for r in varlik], "lrrrr"),
-        grafik(3, "3_portfoy_sirketine_gore_tasfiye.png", "Portföy şirketine göre tasfiye tutarı"),
+        grafik(3, "3_portfoy_sirketine_gore_tasfiye.png", "Portföy şirketine göre net fon büyüklüğü"),
         grup_tablosu("ozet_sirket.csv", "Portföy şirketi"),
-        "### Fonların listedeki diğer fonlara yatırımı\n\n"
-        "Toplamlardan düşülmemiştir; tutan ve tutulan fonun büyüklüğünde ayrı ayrı yer alır. Tutarlar, tutan fonun KAP'taki "
-        f"en güncel portföy dağılım raporundandır. KAP'ta güncel raporu bulunmayan ({bilinmeyen['rapor_yok'][0]} fon) veya rapor "
-        f"yayımlamaktan muaf olan ({bilinmeyen['muaf'][0]} fon) fonlar için bu bilgi bulunmamaktadır. "
-        f"Fon büyüklükleri TEFAS'ın {config.VERI_TARIHI} verisidir; KAP raporları ise {ilk_yayin}–{son_yayin} tarihleri arasında "
-        "yayımlandığı için tutarlar aynı güne ait değildir. "
+        "### Fonların listedeki diğer fonlara yatırımı (KAP, yaklaşık)\n\n"
+        "Tutarlar, tutan fonun eldeki en güncel KAP raporundaki oran × rapor net varlığı hesabıyla üretilmiştir. "
+        f"Ana hesaplamanın kaynağı TEFAS'ın {config.VERI_TARIHI} verisidir; KAP raporları ise eski dönemlere aittir ve "
+        f"{ilk_yayin}–{son_yayin} tarihleri arasında yayımlanmıştır. Bu nedenle aşağıdaki tutarlar "
+        f"**{config.VERI_TARIHI} için kesin veya bağlayıcı veri değil, fonlar arası yatırımı gösteren yaklaşık bir göstergedir.** "
+        "Tutan ve tutulan fonda mükerrer sayılabilecek bu yatırımlar toplamlardan düşülmemiştir. "
+        f"KAP raporu bulunamayan ({bilinmeyen['rapor_yok'][0]} fon) veya muafiyet bildirimi olan ({bilinmeyen['muaf'][0]} fon) "
+        "fonlar için bu bilgi bulunmamaktadır.\n\n"
+        "Tablodaki gün farkı yalnızca TEFAS veri tarihi ile KAP yayın tarihi arasındadır. "
+        "**Yayın tarihi portföyün değerleme tarihi değildir; 0 gün fark, pozisyonların aynı güne ait olduğunu göstermez.** "
         "50 mn TL altındaki kalemler için `fonlar_arasi_yatirim.csv` dosyasına bakın.\n\n"
-        + tablo(["Tutan fon", "Tutulan fon", "Tutar (mlr TL)", "KAP raporu (yayın tarihi)", f"TEFAS {config.VERI_TARIHI} ile fark"],
+        + tablo(["Tutan fon", "Tutulan fon", "Yaklaşık tutar (mlr TL)", "KAP raporu (yayın tarihi)", "TEFAS tarihi − KAP yayın tarihi"],
                 [[r["tutan_fon"], r["tutulan_fon"], f"{float(r['tutar_tl']) / 1e9:,.2f}".replace(".", ","),
                   f"{r['kap_rapor_donemi']} ({r['kap_yayin_tarihi']})", f"{r['tefas_verisiyle_gun_farki']} gün"]
                  for r in read_csv(fonlar_arasi.CIKTI) if float(r["tutar_tl"]) >= 5e7], "llrlr"),
@@ -84,7 +91,7 @@ def bolum():
             ["[`ozet_semsiye_fon_turu.csv`](data/processed/ozet_semsiye_fon_turu.csv)", "Şemsiye fon türüne göre özet"],
             ["[`ozet_sirket.csv`](data/processed/ozet_sirket.csv)", "Portföy şirketine göre özet"],
             ["[`ozet_varlik_dagilimi.csv`](data/processed/ozet_varlik_dagilimi.csv)", "Varlık türüne göre brüt, borç ve net TL"],
-            ["[`fonlar_arasi_yatirim.csv`](data/processed/fonlar_arasi_yatirim.csv)", "Fonların listedeki diğer fonlara yatırımı (son KAP raporları)"],
+            ["[`fonlar_arasi_yatirim.csv`](data/processed/fonlar_arasi_yatirim.csv)", "Fonların listedeki diğer fonlara yatırımı (eski dönem KAP raporlarından yaklaşık gösterge)"],
             ["[`kap_fon_paylari.csv`](data/raw/kap_fon_paylari.csv)", "KAP raporlarından çıkarılan ham fon payı oranları ve rapor durumu"],
         ], "ll"),
     ]

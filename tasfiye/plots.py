@@ -1,4 +1,4 @@
-"""Üç donut grafik: fon tipi, varlık türü ve portföy şirketine göre tasfiye tutarı."""
+"""Tasfiye kapsamındaki fonların net büyüklüğü ve yaklaşık varlık dağılımı."""
 from collections import defaultdict
 
 import matplotlib
@@ -100,28 +100,28 @@ def main():
     ilk_yayin, son_yayin = fonlar_arasi.yayin_araligi()
 
     donut([(k, v, f"{n} fon") for k, (v, n) in grupla(detay, "fon_tipi")],
-          f"Tasfiye edilecek fonlar: {mlr(sum(r['portfoy_buyuklugu_tl'] for r in detay))} milyar TL",
-          f"SPK listesindeki {len(detay)} fonun büyüklüğü, fon tipine göre",
-          "1_fon_tipine_gore_tasfiye.png")
+          "Tasfiye kapsamındaki fonların net varlığı",
+          f"{len(detay)} fonun {config.VERI_TARIHI} tarihli net büyüklüğü, fon tipine göre",
+          "1_fon_tipine_gore_tasfiye.png",
+          footnote="Bildirilen net varlık toplamıdır; gerçekleşecek satış veya yatırımcıya ödenecek tutarı göstermez.")
 
     pos, neg, kaldiracli = varlik_tutarlari(detay, load_tefas_dagilim())
     brut, borc = sum(pos.values()), sum(neg.values())
     varliklar = [(g, sum(pos[k] for k in kodlar), VARLIK_ACIKLAMALARI.get(g, "")) for g, kodlar in VARLIK_GRUPLARI.items()]
     donut(sorted(varliklar, key=lambda t: -t[1]),
-          "Tasfiye edilecek varlıklar: türe göre",
-          f"Fon büyüklüğü × TEFAS portföy dağılım oranı, brüt {mlr(brut)} mlr TL varlık*",
+          "Tasfiye kapsamındaki fonların varlık dağılımı",
+          f"TEFAS {config.VERI_TARIHI}: net fon büyüklüğü × dağılım oranı, yaklaşık TL karşılıkları*",
           "2_varlik_turune_gore_tasfiye.png",
-          footnote=f"* Brüt tutardır: kaldıraçlı {len(kaldiracli)} fonun {mlr(-borc)} mlr TL repo ve para piyasası borcu "
-                   f"düşülmemiştir. Borç düşüldüğünde net varlık {mlr(brut + borc)} mlr TL (toplam fon büyüklüğü).\n"
-                   f"  Yatırım fonu katılma paylarının {mlr(ic_yatirim)} mlr TL'si, son KAP raporlarına göre listedeki diğer fonların paylarıdır "
-                   f"(raporların yayın tarihi {ilk_yayin[:5]}–{son_yayin}).",
-          source=f"Kaynak: SPK Bülteni 2026/60, TEFAS {config.VERI_TARIHI}, KAP portföy dağılım raporları. "
-                 "Hesaplama: fon büyüklüğü × TEFAS portföy dağılım oranı.")
+          footnote=f"* Pozitif kalemler {mlr(brut)} mlr TL; {len(kaldiracli)} fondaki {mlr(-borc)} mlr TL repo ve para piyasası borcu sonrası net {mlr(brut + borc)} mlr TL.\n"
+                   f"  Fonlar arası yatırım yaklaşık {mlr(ic_yatirim)} mlr TL (eski dönem KAP raporları; yayın {ilk_yayin[:5]}–{son_yayin}).\n"
+                   "  KAP tutarı aynı tarihli kesin veri değildir ve toplamdan düşülmemiştir. Dağılım, gerçekleşecek satış tutarını göstermez.",
+          source=f"Kaynak: SPK Bülteni 2026/60, TEFAS {config.VERI_TARIHI}; fonlar arası yatırım için KAP raporları.")
 
     donut([(f"{k} Portföy", v, f"{n} fon") for k, (v, n) in grupla(detay, "sirket")],
-          "Tasfiye tutarı: portföy şirketine göre",
-          "SPK listesindeki fonların büyüklüğü, kurucu portföy yönetim şirketine göre",
-          "3_portfoy_sirketine_gore_tasfiye.png")
+          "Net fon büyüklüğü: portföy şirketine göre",
+          f"Tasfiye kapsamındaki fonların {config.VERI_TARIHI} tarihli net büyüklükleri",
+          "3_portfoy_sirketine_gore_tasfiye.png",
+          footnote="Bildirilen net varlık toplamıdır; gerçekleşecek satış veya yatırımcıya ödenecek tutarı göstermez.")
 
 
 if __name__ == "__main__":

@@ -58,7 +58,7 @@ def main():
                   [key, "fon_sayisi", "portfoy_buyuklugu_tl", "pay_yuzde", "yatirimci_sayisi"],
                   summarize(rows, key, total))
 
-    print(f"{len(rows)} fon, toplam tasfiye büyüklüğü: {total / 1e9:,.2f} mlr TL")
+    print(f"{len(rows)} fon, {config.VERI_TARIHI} tarihli toplam net fon varlığı: {total / 1e9:,.2f} mlr TL")
 
 
 if __name__ == "__main__":

@@ -1,4 +1,4 @@
-"""TEFAS portföy dağılımı × fon büyüklüğü: tasfiye edilecek varlıkların TL karşılığı."""
+"""TEFAS portföy dağılımı × net fon büyüklüğü: varlıkların yaklaşık TL karşılığı."""
 from collections import defaultdict
 
 from . import config
@@ -45,8 +45,9 @@ def main():
                 round(100 * (pos[k] + neg[k]) / net_toplam, 2)] for k in ozet])
 
     print(f"Dağılım verisi olan fon: {len(dagilim)} / {len(detay)}")
-    print(f"Brüt varlık: {sum(pos.values()) / 1e9:,.2f} mlr TL, borç: {sum(neg.values()) / 1e9:,.2f} mlr TL "
-          f"({len(kaldiracli)} kaldıraçlı fon), net: {net_toplam / 1e9:,.2f} mlr TL")
+    print(f"Dağılımdan hesaplanan yaklaşık pozitif tutar: {sum(pos.values()) / 1e9:,.2f} mlr TL, "
+          f"repo ve para piyasası borcu: {sum(neg.values()) / 1e9:,.2f} mlr TL "
+          f"({len(kaldiracli)} fon), net: {net_toplam / 1e9:,.2f} mlr TL")
 
 
 if __name__ == "__main__":

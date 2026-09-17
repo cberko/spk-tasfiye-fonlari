@@ -1,7 +1,8 @@
 """Listedeki fonların birbirine yatırımı (bilgi amaçlı; toplamlardan düşülmez).
 
 Bir fon (ör. TLY) listedeki başka bir fonun (HMV) payını tutuyorsa o tutar iki fonun büyüklüğünde de yer alır.
-Tutarlar, tutan fonun KAP'taki en güncel portföy dağılım raporundaki değerlerdir (oran × rapor net varlığı).
+Tutarlar, eski dönem KAP raporlarındaki oran × rapor net varlığı hesabıyla elde edilen yaklaşık göstergelerdir.
+TEFAS veri tarihi için kesin tutarları göstermez; yayın tarihi ile portföyün değerleme tarihi farklı olabilir.
 """
 from collections import defaultdict
 from datetime import datetime
@@ -13,7 +14,7 @@ CIKTI = config.PROCESSED / "fonlar_arasi_yatirim.csv"
 
 
 def yatirimlar():
-    """Rapor yayımlayan fonların listedeki fonlara yatırımları, rapordaki TL tutarıyla, büyükten küçüğe."""
+    """KAP oranı × rapor net varlığından hesaplanan yaklaşık yatırımlar, büyükten küçüğe."""
     return sorted(({**r, "tutar_tl": float(r["oran"]) * float(r["rapor_net_varlik_tl"])}
                    for r in read_csv(config.KAP_FON_PAYLARI) if r["durum"] == "rapor" and r["tutulan_fon_kodu"]),
                   key=lambda r: -r["tutar_tl"])
@@ -54,7 +55,7 @@ def main():
                       "kap_rapor_donemi", "kap_yayin_tarihi", "tefas_verisiyle_gun_farki", "kap_bildirim_no"],
               [[r["fon_kodu"], r["tutulan_fon_kodu"], round(r["tutar_tl"], 2), r["rapor_net_varlik_tl"], r["oran"],
                 r["rapor_donemi"], r["yayin_tarihi"], gun_farki(r["yayin_tarihi"]), r["kap_bildirim_no"]] for r in rows])
-    print(f"Listedeki fonlara yatırım (son KAP raporları): {toplam() / 1e9:,.2f} mlr TL, {len(rows)} çift")
+    print(f"Listedeki fonlara yaklaşık yatırım (eski dönem KAP raporları): {toplam() / 1e9:,.2f} mlr TL, {len(rows)} çift")
     for durum, (adet, tl) in bilinmeyen().items():
         print(f"  içeriği bilinmeyen ({durum}): {adet} fon, {tl / 1e9:,.2f} mlr TL fon payı")
 
