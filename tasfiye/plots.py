@@ -11,8 +11,8 @@ from . import config
 from .allocation import varlik_tutarlari
 from .io import load_detay, load_tefas_dagilim
 
-# dataviz referans paleti, açık tema, sabit slot sırası (6 slot renk körlüğü testinden geçti)
-SERIES = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4", "#008300"]
+# dataviz referans paleti, açık tema, sabit slot sırası (7 slot renk körlüğü testinden geçti)
+SERIES = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4", "#008300", "#4a3aa7"]
 SURFACE, INK, INK2, MUTED, GRID = "#fcfcfb", "#0b0b0b", "#52514e", "#8a8984", "#e6e5e0"
 
 KAYNAK = f"Kaynak: SPK Bülteni 2026/60 (17.09.2026), TEFAS {config.VERI_TARIHI} fon büyüklükleri."
@@ -114,7 +114,7 @@ def main():
           source=f"Kaynak: SPK Bülteni 2026/60, TEFAS {config.VERI_TARIHI}. "
                  "Hesaplama: fon büyüklüğü × TEFAS portföy dağılım oranı.")
 
-    donut([(f"{k} Portföy", v, f"{n} fon") for k, (v, n) in grupla(detay, "sirket_grubu")],
+    donut([(f"{k} Portföy", v, f"{n} fon") for k, (v, n) in grupla(detay, "sirket")],
           "Tasfiye tutarı: portföy şirketine göre",
           "SPK listesindeki fonların büyüklüğü, kurucu portföy yönetim şirketine göre",
           "3_portfoy_sirketine_gore_tasfiye.png")

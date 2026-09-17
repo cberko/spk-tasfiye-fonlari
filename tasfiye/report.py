@@ -54,7 +54,7 @@ def bolum():
                 [[r["varlik"], mlr(r["brut_pozitif_tl"]), mlr(r["negatif_tl"]) if float(r["negatif_tl"]) else "",
                   mlr(r["net_tl"]), yuzde(r["net_tl"], net_toplam)] for r in varlik], "lrrrr"),
         grafik(3, "3_portfoy_sirketine_gore_tasfiye.png", "Portföy şirketine göre tasfiye tutarı"),
-        grup_tablosu("ozet_sirket_grubu.csv", "Portföy şirketi"),
+        grup_tablosu("ozet_sirket.csv", "Portföy şirketi"),
         "### En büyük 10 fon\n\n"
         + tablo(["Kod", "Fon", "Büyüklük (mlr TL)", "Yatırımcı"],
                 [[r["fon_kodu"], r["fon_unvani"], mlr(r["portfoy_buyuklugu_tl"]), binlik(r["yatirimci_sayisi"])]
@@ -69,7 +69,7 @@ def bolum():
              "Fon bazında portföy dağılımı (% ve TL), kaldıraç bilgisi"],
             ["[`ozet_fon_tipi.csv`](data/processed/ozet_fon_tipi.csv)", "Fon tipine göre özet"],
             ["[`ozet_semsiye_fon_turu.csv`](data/processed/ozet_semsiye_fon_turu.csv)", "Şemsiye fon türüne göre özet"],
-            ["[`ozet_sirket_grubu.csv`](data/processed/ozet_sirket_grubu.csv)", "Portföy şirketine göre özet"],
+            ["[`ozet_sirket.csv`](data/processed/ozet_sirket.csv)", "Portföy şirketine göre özet"],
             ["[`ozet_varlik_dagilimi.csv`](data/processed/ozet_varlik_dagilimi.csv)", "Varlık türüne göre brüt, borç ve net TL"],
         ], "ll"),
     ]

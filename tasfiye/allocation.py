@@ -29,11 +29,11 @@ def main():
     for r in detay:
         a, size = dagilim.get(r["fon_kodu"], {}), r["portfoy_buyuklugu_tl"]
         kaldirac = "evet" if any(v < 0 for v in a.values()) else ""
-        rows.append([r["fon_kodu"], r["fon_unvani"], r["sirket_grubu"], r["semsiye_fon_turu"], round(size, 2), kaldirac]
+        rows.append([r["fon_kodu"], r["fon_unvani"], r["sirket"], r["semsiye_fon_turu"], round(size, 2), kaldirac]
                     + [a.get(k, "") for k in keys]
                     + [round(a[k] / 100 * size, 2) if k in a else "" for k in keys])
     write_csv(config.FON_DAGILIM,
-              ["fon_kodu", "fon_unvani", "sirket_grubu", "semsiye_fon_turu", "portfoy_buyuklugu_tl", "kaldirac_var"]
+              ["fon_kodu", "fon_unvani", "sirket", "semsiye_fon_turu", "portfoy_buyuklugu_tl", "kaldirac_var"]
               + [f"{etiket[k]} (%)" for k in keys] + [f"{etiket[k]} (TL)" for k in keys], rows)
 
     pos, neg, kaldiracli = varlik_tutarlari(detay, dagilim)

@@ -77,9 +77,10 @@ Fon büyüklüğü × TEFAS portföy dağılım oranı. Negatif tutarlar kaldır
 | Tera | 5 | 538,3 | %63,9 | 323.299 |
 | Atlas | 16 | 78,0 | %9,3 | 59.915 |
 | Hedef | 31 | 77,7 | %9,2 | 27.593 |
-| A1 Capital + Pardus | 51 | 73,2 | %8,7 | 42.299 |
+| Pardus | 42 | 70,8 | %8,4 | 40.759 |
 | Pusula | 12 | 64,1 | %7,6 | 60.357 |
 | Bulls | 15 | 11,4 | %1,3 | 5.636 |
+| A1 Capital | 9 | 2,4 | %0,3 | 1.540 |
 
 ### En büyük 10 fon
 
@@ -107,7 +108,7 @@ Fon büyüklüğü × TEFAS portföy dağılım oranı. Negatif tutarlar kaldır
 | [`tasfiye_fonlar_dagilim.csv`](data/processed/tasfiye_fonlar_dagilim.csv) | Fon bazında portföy dağılımı (% ve TL), kaldıraç bilgisi |
 | [`ozet_fon_tipi.csv`](data/processed/ozet_fon_tipi.csv) | Fon tipine göre özet |
 | [`ozet_semsiye_fon_turu.csv`](data/processed/ozet_semsiye_fon_turu.csv) | Şemsiye fon türüne göre özet |
-| [`ozet_sirket_grubu.csv`](data/processed/ozet_sirket_grubu.csv) | Portföy şirketine göre özet |
+| [`ozet_sirket.csv`](data/processed/ozet_sirket.csv) | Portföy şirketine göre özet |
 | [`ozet_varlik_dagilimi.csv`](data/processed/ozet_varlik_dagilimi.csv) | Varlık türüne göre brüt, borç ve net TL |
 <!-- CIKTILAR:BITIS -->
 
@@ -128,7 +129,7 @@ PDF'ten fon listesini çıkarmak için `pdftotext` gerekir (`brew install popple
 | Adım | Modül | Girdi | Çıktı |
 |---|---|---|---|
 | 1 | `tasfiye.extract` | `data/raw/spk_bulten_2026-60.pdf` | `fon_listesi.csv` |
-| 2 | `tasfiye.dataset` | fon listesi + `tefas_genel_20260916.txt` | `tasfiye_fonlar_detay.csv`, `ozet_fon_tipi.csv`, `ozet_semsiye_fon_turu.csv`, `ozet_sirket_grubu.csv` |
+| 2 | `tasfiye.dataset` | fon listesi + `tefas_genel_20260916.txt` | `tasfiye_fonlar_detay.csv`, `ozet_fon_tipi.csv`, `ozet_semsiye_fon_turu.csv`, `ozet_sirket.csv` |
 | 3 | `tasfiye.allocation` | detay + `tefas_dagilim_20260916.txt` | `tasfiye_fonlar_dagilim.csv`, `ozet_varlik_dagilimi.csv` |
 | 4 | `tasfiye.plots` | işlenmiş veriler | `output/grafikler/*.png` |
 | 5 | `tasfiye.report` | özet CSV'ler | `README.md` çıktılar bölümü |
@@ -142,5 +143,4 @@ PDF'ten fon listesini çıkarmak için `pdftotext` gerekir (`brew install popple
 - **Şemsiye fon türü**, fonun bağlı olduğu şemsiye fonun TEFAS kategorisidir. **Fon tipi** ise grafikler için şemsiye türü ve unvandan türetilen sınıflamadır.
 - **Kaldıraç:** Portföy dağılımında repo ve para piyasası borçları negatif yüzde olarak gelir.
   Varlık grafiği brüt tutarı gösterir; borç düşülünce toplam, fon büyüklüğüne (842,7 mlr TL) eşitlenir.
-- A1 Capital ve Pardus portföy şirketleri raporlamada tek grup olarak ele alındı.
 - `gsykb` alanının TEFAS arayüzünde etiketi yok; "Girişim Sermayesi Yatırım Fonu Katılma Payları" olarak yorumlandı (0,5 mlr TL).
