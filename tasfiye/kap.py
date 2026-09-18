@@ -39,18 +39,20 @@ def fon_payi_tutanlar():
 
 
 def son_raporlar(fonlar):
-    """Her fon için ARAMA_BITIS'ten geriye en güncel portföy dağılım raporu bildirimi."""
+    """Her fon için ARAMA_BITIS'ten geriye en güncel portföy dağılım raporu bildirimi (önbellekli)."""
     path = CACHE / "son_raporlar.json"
-    if path.exists():
-        return json.loads(path.read_text(encoding="utf-8"))
-    found, end = {}, ARAMA_BITIS
-    while end >= ARAMA_BASLANGIC and len(found) < len(fonlar):
+    found = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+    aranan = fonlar - set(found)  # önbellekte olmayan fonlar için KAP'a sorulur
+    if not aranan:
+        return found
+    end = ARAMA_BITIS
+    while end >= ARAMA_BASLANGIC and not aranan <= set(found):
         start = end - dt.timedelta(days=6)
         body = {"fromDate": start.isoformat(), "toDate": end.isoformat(), "fundTypeList": ["YF"],
                 "mkkMemberOidList": [], "fundOidList": [], "passiveFundOidList": [], "disclosureClass": "DG",
                 "isLate": "", "subjectList": [PORTFOY_DAGILIM_RAPORU], "discIndex": [], "fromSrc": False, "srcCategory": ""}
         for x in sorted(json.loads(_request(f"{API}/disclosure/funds/byCriteria", body)), key=lambda x: -x["disclosureIndex"]):
-            if x["fundCode"] in fonlar and x["fundCode"] not in found:
+            if x["fundCode"] in aranan and x["fundCode"] not in found:
                 found[x["fundCode"]] = {k: x[k] for k in ("disclosureIndex", "publishDate", "ruleType")}
         end = start - dt.timedelta(days=1)
         time.sleep(8)

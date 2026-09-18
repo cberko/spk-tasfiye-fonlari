@@ -122,6 +122,7 @@ SEH:hs=99.93,tpp=0.07
 SHI:hs=82.79,vint=6.25,yyf=10.96
 SNY:hs=82.19,vint=0.49,yyf=17.32
 T3B:hs=96.86,r=-3.78,fb=2.53,tpp=-2.8,vint=0.2,yyf=3.09,osks=0.24,gsykb=1.98,vdm=1.68
+THF:hs=90.04,yyf=9.07,vint=0.88,fb=0.01
 TLV:osks=18.82,byf=9.93,khtl=37.04,btas=11.74,kkstl=22.47
 TLY:hs=87.43,r=-7.61,fb=4.49,tr=2.67,vmtl=0.53,vint=0.18,yyf=8.9,osks=3.41
 TP2:bpp=15.7,dt=9.76,fb=1.09,tr=63.17,osks=5.54,khtl=2.19,ost=0.01,vdm=2.52,kkstl=0.02

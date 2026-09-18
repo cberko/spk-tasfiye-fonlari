@@ -15,7 +15,7 @@ from .io import load_detay, load_tefas_dagilim
 SERIES = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4", "#008300", "#4a3aa7"]
 SURFACE, INK, INK2, MUTED, GRID = "#fcfcfb", "#0b0b0b", "#52514e", "#8a8984", "#e6e5e0"
 
-KAYNAK = f"Kaynak: SPK Bülteni 2026/60 (17.09.2026), TEFAS {config.VERI_TARIHI} fon büyüklükleri."
+KAYNAK = f"Kaynak: SPK Bültenleri 2026/60 ve 2026/61 (17.09.2026), TEFAS {config.VERI_TARIHI} fon büyüklükleri."
 IMZA = "linkedin.com/in/ceylanberk-tola"
 
 VARLIK_GRUPLARI = {
@@ -115,7 +115,7 @@ def main():
           footnote=f"* Pozitif kalemler {mlr(brut)} mlr TL; {len(kaldiracli)} fondaki {mlr(-borc)} mlr TL repo ve para piyasası borcu sonrası net {mlr(brut + borc)} mlr TL.\n"
                    f"  Fonlar arası yatırım yaklaşık {mlr(ic_yatirim)} mlr TL (eski dönem KAP raporları; yayın {ilk_yayin[:5]}–{son_yayin}).\n"
                    "  KAP tutarı aynı tarihli kesin veri değildir ve toplamdan düşülmemiştir. Dağılım, gerçekleşecek satış tutarını göstermez.",
-          source=f"Kaynak: SPK Bülteni 2026/60, TEFAS {config.VERI_TARIHI}; fonlar arası yatırım için KAP raporları.")
+          source=f"Kaynak: SPK Bültenleri 2026/60 ve 2026/61, TEFAS {config.VERI_TARIHI}; fonlar arası yatırım için KAP raporları.")
 
     donut([(f"{k} Portföy", v, f"{n} fon") for k, (v, n) in grupla(detay, "sirket")],
           "Net fon büyüklüğü: portföy şirketine göre",

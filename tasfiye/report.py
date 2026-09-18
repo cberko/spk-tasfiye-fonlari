@@ -82,7 +82,7 @@ def bolum():
         "\\* Yatırımcı sayıları fon bazında toplanmıştır; birden fazla fonda payı olan yatırımcı birden çok sayılır.",
         "### Veri dosyaları\n\n"
         + tablo(["Dosya", "İçerik"], [
-            ["[`fon_listesi.csv`](data/processed/fon_listesi.csv)", "SPK bülteninden çıkarılan 130 fon"],
+            ["[`fon_listesi.csv`](data/processed/fon_listesi.csv)", "SPK bülteninden çıkarılan güncel fon listesi"],
             ["[`tasfiye_fonlar_detay.csv`](data/processed/tasfiye_fonlar_detay.csv)",
              "Fon bazında TEFAS kodu, şemsiye türü, fon tipi, büyüklük, yatırımcı, fiyat"],
             ["[`tasfiye_fonlar_dagilim.csv`](data/processed/tasfiye_fonlar_dagilim.csv)",

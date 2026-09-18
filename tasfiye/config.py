@@ -6,7 +6,8 @@ RAW = ROOT / "data" / "raw"
 PROCESSED = ROOT / "data" / "processed"
 CHARTS = ROOT / "output" / "grafikler"
 
-SPK_PDF = RAW / "spk_bulten_2026-60.pdf"
+SPK_PDF_ILK = RAW / "spk_bulten_2026-60.pdf"       # ilk duyuru (130 fon)
+SPK_PDF = RAW / "spk_bulten_2026-61.pdf"           # güncel liste (131 fon)
 TEFAS_GENEL = RAW / "tefas_genel_20260916.txt"
 TEFAS_DAGILIM = RAW / "tefas_dagilim_20260916.txt"
 KAP_FON_PAYLARI = RAW / "kap_fon_paylari.csv"
