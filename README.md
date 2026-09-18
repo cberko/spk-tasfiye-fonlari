@@ -1,11 +1,14 @@
 # SPK 2026/60 ve 2026/61: Tasfiye Edilecek Fonlar
 
 SPK'nın 17.09.2026 tarihli 2026/60 sayılı bülteninde tasfiyesine karar verilen, 2026/61 sayılı bültende güncellenen
-yatırım fonlarının analizi. Karar Tera, Pusula, Hedef, Atlas, A1 Capital, Pardus ve Bulls portföy şirketlerinin 131 fonunu kapsıyor
-(2026/61 ile Tera Portföy Hisse Senedi (TL) Fonu listeye eklendi).
+yatırım fonlarının analizi. Karar Tera, Pusula, Hedef, Atlas, A1 Capital, Pardus ve Bulls portföy şirketlerinin 131 fonunu kapsıyor.
 Fon büyüklükleri ve portföy dağılımları TEFAS'ın **16.09.2026** verisinden alındı.
 Çalışma, bu tarihteki net fon büyüklüklerini ve dağılım oranlarından hesaplanan yaklaşık varlık tutarlarını gösterir.
 Gerçekleşecek satış tutarı, tasfiye sonunda yatırımcıya ödenecek tutar veya piyasadaki satış baskısı tahmini değildir.
+
+> **Güncelleme (18.09.2026):** SPK'nın 2026/61 sayılı bültenindeki güncel listeye Tera Portföy Hisse Senedi (TL) Fonu (THF)
+> eklendi; fon sayısı 130'dan 131'e çıktı. THF'nin 16.09.2026 tarihli TEFAS verisi ve KAP portföy raporu çalışmaya dahil edilerek
+> tüm veriler, özetler ve grafikler güncellendi.
 
 ## Sonuçlar
 
